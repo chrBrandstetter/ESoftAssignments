@@ -5,7 +5,6 @@ public class Pruefziffernberechnung {
         char isbn = In.read(); // In.read() -> wandelt char um in ASCII
         int sum = 0;
 
-
         for (int i = 1; i <= 9 && isbn != '\n'; i++) { // isbn != '\n' -> solange Zeichen im Puffer
             int num = isbn - '0'; // pars in int | minus 0 damit nicht ASCII sondern wirklich der char verwendet wird
             sum = sum + (num * i);
