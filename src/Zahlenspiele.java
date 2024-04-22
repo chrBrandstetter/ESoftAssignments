@@ -43,10 +43,10 @@ public class Zahlenspiele {
         // reciprocial()
         double num = 123.567;
         reciprocial = reciprocial(num);
-        Out.print("\nDer Kehrwert von " + n + " ist " + reciprocial);
+        Out.print("\nDer Kehrwert von " + num + " ist " + reciprocial);
 
         // sayDigit()
-        int digit = 3;
+        int digit = 6;
         Out.print("\n" + digit + " in Worten ist " + sayDigit(digit));
 
         // sayDigitAt()
@@ -62,7 +62,7 @@ public class Zahlenspiele {
         int lowerBound = -2;
         int upperBound = 5;
         Out.print("\nBitte Zahl zwischen " + lowerBound + " und " + upperBound + " eingeben: ");
-        double numberInRange = inputInRangeOnly(1,5);
+        double numberInRange = inputInRangeOnly(lowerBound,upperBound);
         Out.print("\nDie eingegebene Zahl ist " + numberInRange);
     }
 
@@ -97,7 +97,7 @@ public class Zahlenspiele {
     }
 
     static int invertNumber(int n){
-        if (n < 0 || n == 0){
+        if (!isPositive(n) || n == 0){
             return n;
         }
 
@@ -111,23 +111,63 @@ public class Zahlenspiele {
     }
 
     static int digitAt(int n, int pos){ // test this thoroughly
-        if (pos <= 0 || numberDigits(n) < pos){
+        int numberOfDigits = numberDigits(n);
+        if (pos <= 0 || numberOfDigits < pos){
             return -1;
         }
 
-        while (pos >= 1){
+        for (int i = numberOfDigits; i > pos; i--) {
             n /= 10;
-            pos --;
         }
         return n % 10;
     }
 
     static double reciprocial(double n){
         double reciprocial = 0.0;
-        if (n == 0){
+        if (n == 0){ //try if this works
             return reciprocial;
         }
         reciprocial = 1 / n;
         return reciprocial;
+    }
+
+    static String sayDigit(int n){
+        switch(n){
+            case (1): return "one";
+            case (2): return "two";
+            case (3): return "three";
+            case (4): return "four";
+            case (5): return "five";
+            case (6): return "six";
+            case (7): return "seven";
+            case (8): return "eight";
+            case (9): return "nine";
+            default: return "***invalid***";
+        }
+    }
+
+    static String sayDigitAt(int n, int pos){
+        int digit = digitAt(n, pos);
+        return sayDigit(digit);
+    }
+
+    static int inputPositiveInt(){
+        int number = In.readInt();
+        while (!isPositive(number)){
+            Out.println("Not a valid int, please try again");
+            Out.print("Positive Zahl eingeben: ");
+            number = In.readInt();
+        }
+        return number;
+    }
+
+    static double inputInRangeOnly(int lowerBound, int upperBound){
+        double number = In.readDouble();
+        while(number < lowerBound || number > upperBound){
+            Out.println("Not a valid double, please try again");
+            Out.print("Bitte Zahl zwischen " + lowerBound + " und " + upperBound + " eingeben: ");
+            number = In.readDouble();
+        }
+        return number;
     }
 }
