@@ -79,8 +79,7 @@ public class Zahlenspiele {
         }
     }
 
-    static boolean isDividor(int n, int d)
-    {
+    static boolean isDividor(int n, int d) {
         return n % d == 0;
     }
 
