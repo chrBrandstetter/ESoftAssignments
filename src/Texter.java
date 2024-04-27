@@ -10,7 +10,7 @@ class Texter {
                 'H','U', 'G', 'O', 'x', 'x'};
         char [] text2 = {'x','x','H', 'U', 'G', 'O'};
         char [] search = {'H','U', 'G', 'O'};
-        char [] replace = {'h','u', 'g', 'o'};
+        char [] replace = {'h','u','g','o','o','o'};
 
         // Suchen des Textes - (A)
         int from = 3;
@@ -131,14 +131,45 @@ class Texter {
         if (text == null || search == null || replacement == null) return null;
         if (text.length == 0 || search.length == 0 || replacement.length == 0) return null;
 
-        return null;
+        int position = find(text, search, 0);
+        int counter = 0;
+        int arrayLength = (text.length - search.length) + replacement.length;
+        char[] changedText = new char[arrayLength];
+
+        for(int i = 0; i < changedText.length; i++){
+            if (changedText.length == text.length){
+                changedText[i] = text[i];
+            }
+            else if (changedText.length > text.length){
+                if(counter < text.length){
+                    changedText[i] = text[counter];
+                    counter++;
+                }
+                else{
+                    changedText[i] = 'x';
+                }
+            }
+            else {
+                if(counter < changedText.length){
+                    changedText[i] = text[counter];
+                    counter++;
+                }
+            }
+        }
+
+        counter = 0;
+
+        // Weiß leider nicht wie ich den Code hier verändern müsste damit sich der restliche Text nach hinten verschiebt
+        // wenn der Replacement-Text länger ist als der Search-Text.
+        // Hugo wird zwar ersätzt, überschreibt mir aber das restliche Array und verschiebt es nicht nach hinten.
+
+        for(int i = position; i < changedText.length; i++){
+            if(counter < replacement.length) {
+                changedText[i] = replacement[counter];
+                counter++;
+            }
+        }
+        return changedText;
     }
-
-
-
-
-
-
-
 } // end Texter
 
