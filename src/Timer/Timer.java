@@ -24,7 +24,7 @@ class Timer {
 
     boolean elapse(long sec) {
         if (this.sec - sec >= 0) {
-            this.sec -= sec;
+            this.sec += sec;
             return true;
         }
         return false;
