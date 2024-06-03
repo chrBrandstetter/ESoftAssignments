@@ -1,4 +1,5 @@
 package GuestCounter;
+
 public class GuestCounter {
     String name;
     int capacity;
